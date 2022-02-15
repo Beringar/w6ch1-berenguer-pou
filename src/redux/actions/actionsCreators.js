@@ -15,7 +15,7 @@ export const addTodoAction = (todo) => ({
   todo,
 });
 
-export const updateTodoAction = (todo) => ({
-  type: actionsTypes.updateTodo,
-  todo,
+export const toggleSolvedTodoAction = (id) => ({
+  type: actionsTypes.toggleSolvedTodo,
+  id,
 });

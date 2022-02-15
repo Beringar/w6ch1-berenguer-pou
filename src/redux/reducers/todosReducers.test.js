@@ -2,7 +2,7 @@ import {
   loadTodosAction,
   addTodoAction,
   deleteTodoAction,
-  updateTodoAction,
+  toggleSolvedTodoAction,
 } from "../actions/actionsCreators";
 import todosReducers from "./todosReducers";
 
@@ -105,14 +105,14 @@ describe("Given a todosReducer", () => {
     });
   });
 
-  describe("When it's called with an action type updateTodo and provide a todo with maching id", () => {
+  describe("When it's called with an action type toggleSolvedTodo and provide a maching id", () => {
     test("then it should return a new state with the same amount of recipes", () => {
       const currentState = [
-        { id: 1, text: "todo1" },
-        { id: 2, text: "todo2" },
+        { id: 1, text: "todo1", notdone: false },
+        { id: 2, text: "todo2", notdone: false },
       ];
-      const todo = { id: 2, text: "todoUpdated" };
-      const action = updateTodoAction(todo);
+      const todoId = 2;
+      const action = toggleSolvedTodoAction(todoId);
       const expectedLength = 2;
 
       const newState = todosReducers(currentState, action);
@@ -120,39 +120,49 @@ describe("Given a todosReducer", () => {
       expect(newState.length).toBe(expectedLength);
     });
 
-    test("then it should return a new state with the updated todo and without the outdated todo", () => {
+    test("then it should return a new state with the updated todo and without the outdated todo info", () => {
       const currentState = [
-        { id: 1, text: "todo1" },
-        { id: 2, text: "todo2" },
+        { id: 1, text: "todo1", notdone: false },
+        { id: 2, text: "todo2", notdone: false },
       ];
-      const todoOutdated = { id: 2, text: "tod2" };
-      const todoUpdated = { id: 2, text: "todoUpdated" };
-      const action = updateTodoAction(todoUpdated);
+
+      const todoIdtoBeToggled = 2;
+      const currentNotDoneStatus = currentState.find(
+        (todo) => todo.id === todoIdtoBeToggled
+      ).notdone;
+      const action = toggleSolvedTodoAction(todoIdtoBeToggled);
 
       const newState = todosReducers(currentState, action);
-
       expect(
-        newState.some(
-          (todo) => JSON.stringify(todo) === JSON.stringify(todoUpdated)
-        ) &&
-          !newState.some(
-            (todo) => JSON.stringify(todo) === JSON.stringify(todoOutdated)
-          )
-      ).toBe(true);
+        newState.find((todo) => todo.id === todoIdtoBeToggled).notdone
+      ).toBe(!currentNotDoneStatus);
     });
   });
 
-  describe("When it's called with an action type updateTodo and provide a todo with no matching id", () => {
+  describe("When it's called with an action type toggleSolvedTodo and provide a todo with no matching id", () => {
     test("Then it should return a new state equal to currentstate", () => {
       const currentState = [
         { id: 1, text: "todo1" },
         { id: 2, text: "todo2" },
       ];
-      const todoToUpdate = { id: 666, text: "devil zone" };
-      const action = updateTodoAction(todoToUpdate);
+      const todoTotoggleSolved = { id: 666, text: "devil zone" };
+      const action = toggleSolvedTodoAction(todoTotoggleSolved);
 
       const newState = todosReducers(currentState, action);
 
+      expect(newState).toEqual(currentState);
+    });
+  });
+
+  describe("When it's called with an action type toggleSolvedTodo and provide no todo", () => {
+    test("Then it should return a new state equal to currentstate", () => {
+      const currentState = [
+        { id: 1, text: "todo1" },
+        { id: 2, text: "todo2" },
+      ];
+
+      const action = toggleSolvedTodoAction();
+      const newState = todosReducers(currentState, action);
       expect(newState).toEqual(currentState);
     });
   });

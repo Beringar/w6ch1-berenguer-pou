@@ -16,12 +16,15 @@ const todosReducers = (currentTodos = [], action = {}) => {
         ? [...currentTodos].filter((todo) => todo.id !== action.id)
         : [...currentTodos];
       break;
-    case actionsTypes.updateTodo:
-      newState = action.todo
-        ? [...currentTodos].map((todo) =>
-            todo.id === action.todo.id ? { ...action.todo } : { ...todo }
-          )
-        : [...currentTodos];
+    case actionsTypes.toggleSolvedTodo:
+      newState = currentTodos.map((todo) =>
+        todo.id === action.id
+          ? {
+              ...todo,
+              notdone: !todo.notdone,
+            }
+          : { ...todo }
+      );
       break;
     default:
       newState = [...currentTodos];

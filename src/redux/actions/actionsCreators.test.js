@@ -2,7 +2,7 @@ import {
   loadTodosAction,
   addTodoAction,
   deleteTodoAction,
-  updateTodoAction,
+  toggleSolvedTodoAction,
 } from "./actionsCreators";
 import { actionsTypes } from "./actionsTypes";
 
@@ -43,13 +43,13 @@ describe("Given an ActionsCreator set", () => {
     });
   });
 
-  describe("When the function updateTodoAction is called", () => {
-    test("Then it should return an object with type add-todo and the object passed", () => {
-      const updateTodoType = actionsTypes.updateTodo;
-      const mockObject = { todo: { test: "test" } };
-      const expectedAction = { type: updateTodoType, todo: mockObject };
+  describe("When the function toggleSolvedTodoAction is called", () => {
+    test("Then it should return an object with type toggle-solved-todo and id passed", () => {
+      const toggleSolvedTodoType = actionsTypes.toggleSolvedTodo;
+      const mockId = 5;
+      const expectedAction = { type: toggleSolvedTodoType, id: mockId };
 
-      const action = updateTodoAction(mockObject);
+      const action = toggleSolvedTodoAction(mockId);
       expect(action).toEqual(expectedAction);
     });
   });
