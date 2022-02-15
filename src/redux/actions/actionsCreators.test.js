@@ -33,12 +33,12 @@ describe("Given an ActionsCreator set", () => {
   });
 
   describe("When the function deleteTodoAction is called", () => {
-    test("Then it should return an object with type add-todo and the object passed", () => {
+    test("Then it should return an object with type delete-todo and the object passed", () => {
       const deleteTodoType = actionsTypes.deleteTodo;
-      const mockObject = { todo: { test: "test" } };
-      const expectedAction = { type: deleteTodoType, todo: mockObject };
+      const mockId = 3;
+      const expectedAction = { type: deleteTodoType, id: mockId };
 
-      const action = deleteTodoAction(mockObject);
+      const action = deleteTodoAction(mockId);
       expect(action).toEqual(expectedAction);
     });
   });

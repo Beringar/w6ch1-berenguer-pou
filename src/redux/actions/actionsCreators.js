@@ -5,9 +5,9 @@ export const loadTodosAction = (todos) => ({
   todos,
 });
 
-export const deleteTodoAction = (todo) => ({
+export const deleteTodoAction = (id) => ({
   type: actionsTypes.deleteTodo,
-  todo,
+  id,
 });
 
 export const addTodoAction = (todo) => ({
