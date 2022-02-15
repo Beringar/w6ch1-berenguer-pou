@@ -1,4 +1,6 @@
 export const actionsTypes = {
   loadTodos: "load-todos",
-  deleteArticle: "delete-article",
+  deleteTodo: "delete-todo",
+  updateTodo: "update-todo",
+  addTodo: "add-todo",
 };

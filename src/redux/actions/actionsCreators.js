@@ -5,7 +5,17 @@ export const loadTodosAction = (todos = []) => ({
   todos,
 });
 
-export const deleteTodoAction = (todos = []) => ({
+export const deleteTodoAction = (todo = {}) => ({
   type: actionsTypes.deleteTodo,
-  todos,
+  todo,
+});
+
+export const addTodoAction = (todo = {}) => ({
+  type: actionsTypes.addTodo,
+  todo,
+});
+
+export const updateTodoAction = (todo = {}) => ({
+  type: actionsTypes.updateTodo,
+  todo,
 });
