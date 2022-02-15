@@ -9,15 +9,19 @@ const todosReducers = (currentTodos = [], action = {}) => {
         : [...currentTodos];
       break;
     case actionsTypes.loadTodos:
-      newState = [...action.todos];
+      newState = action.todos ? [...action.todos] : [...currentTodos];
       break;
     case actionsTypes.deleteTodo:
-      newState = [...currentTodos].filter((todo) => todo.id !== action.id);
+      newState = action.todo
+        ? [...currentTodos].filter((todo) => todo.id !== action.id)
+        : [...currentTodos];
       break;
     case actionsTypes.updateTodo:
-      newState = [...currentTodos].map((todo) =>
-        todo.id === action.todo.id ? { ...action.todo } : { ...todo }
-      );
+      newState = action.todo
+        ? [...currentTodos].map((todo) =>
+            todo.id === action.todo.id ? { ...action.todo } : { ...todo }
+          )
+        : [...currentTodos];
       break;
     default:
       newState = [...currentTodos];

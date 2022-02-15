@@ -41,5 +41,17 @@ describe("Given a todosReducer", () => {
         expect(newState).toEqual(expectedNewState);
       });
     });
+
+    describe("When it's called with action type addTodo and passed no todo", () => {
+      test("Then it should return a newState equal to previous state", () => {
+        const currentState = [{ id: 3, text: "todo3" }];
+        const action = addTodoAction();
+        const expectedNewState = [...currentState];
+
+        const newState = todosReducers(currentState, action);
+
+        expect(newState).toEqual(expectedNewState);
+      });
+    });
   });
 });
