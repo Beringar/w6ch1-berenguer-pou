@@ -1,4 +1,4 @@
-import { loadTodosAction } from "../actions/actionsCreators";
+import { loadTodosAction, addTodoAction } from "../actions/actionsCreators";
 import todosReducers from "./todosReducers";
 
 describe("Given a todosReducer", () => {
@@ -22,6 +22,31 @@ describe("Given a todosReducer", () => {
         const currentState = [];
         const action = loadTodosAction();
         const expectedNewState = [];
+
+        const newState = todosReducers(currentState, action);
+
+        expect(newState).toEqual(expectedNewState);
+      });
+    });
+
+    describe("When it's called with action type addTodo and passed a todo", () => {
+      test("Then it should return a newState with all the previous todos and the todo inside action", () => {
+        const currentState = [{ id: 3, text: "todo3" }];
+        const todoToAdd = { id: 666, text: "find the devil" };
+        const action = addTodoAction({ ...todoToAdd });
+        const expectedNewState = [...currentState, { ...todoToAdd }];
+
+        const newState = todosReducers(currentState, action);
+
+        expect(newState).toEqual(expectedNewState);
+      });
+    });
+
+    describe("When it's called with action type addTodo and passed no todo", () => {
+      test("Then it should return a newState equal to previous state", () => {
+        const currentState = [{ id: 3, text: "todo3" }];
+        const action = addTodoAction();
+        const expectedNewState = [...currentState];
 
         const newState = todosReducers(currentState, action);
 
