@@ -12,7 +12,7 @@ const todosReducers = (currentTodos = [], action = {}) => {
       newState = action.todos ? [...action.todos] : [...currentTodos];
       break;
     case actionsTypes.deleteTodo:
-      newState = action.todo
+      newState = action.id
         ? [...currentTodos].filter((todo) => todo.id !== action.id)
         : [...currentTodos];
       break;

@@ -1,4 +1,8 @@
-import { loadTodosAction, addTodoAction } from "../actions/actionsCreators";
+import {
+  loadTodosAction,
+  addTodoAction,
+  deleteTodoAction,
+} from "../actions/actionsCreators";
 import todosReducers from "./todosReducers";
 
 describe("Given a todosReducer", () => {
@@ -47,6 +51,22 @@ describe("Given a todosReducer", () => {
         const currentState = [{ id: 3, text: "todo3" }];
         const action = addTodoAction();
         const expectedNewState = [...currentState];
+
+        const newState = todosReducers(currentState, action);
+
+        expect(newState).toEqual(expectedNewState);
+      });
+    });
+
+    describe("When it's called with action type deleteTodo and passed a matching id", () => {
+      test("Then it should return a new state without the todo with matching id", () => {
+        const currentState = [
+          { id: 1, text: "todo1" },
+          { id: 2, text: "todo2" },
+        ];
+        const idTodoToDelete = 1;
+        const action = deleteTodoAction(idTodoToDelete);
+        const expectedNewState = [{ id: 2, text: "todo2" }];
 
         const newState = todosReducers(currentState, action);
 
