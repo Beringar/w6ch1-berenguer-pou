@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { loadTodosThunk } from "./redux/thunks/todosThunks";
+import "./App.css";
+import TodosList from "./components/TodosList/TodosList";
 
-function App() {
+const App = () => {
+  const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadTodosThunk);
+  }, [dispatch]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main className="main">
+        <h1>Not Todos List</h1>
+        <TodosList todos={todos} />
+      </main>
     </div>
   );
-}
+};
 
 export default App;
