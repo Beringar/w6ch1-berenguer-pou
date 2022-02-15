@@ -3,15 +3,20 @@ import { actionsTypes } from "../actions/actionsTypes";
 const todosReducers = (currentTodos = [], action = {}) => {
   let newState;
   switch (action.type) {
+    case actionsTypes.addTodo:
+      newState = action.todo
+        ? [...currentTodos, { ...action.todo }]
+        : [...currentTodos];
+      break;
     case actionsTypes.loadTodos:
       newState = [...action.todos];
       break;
     case actionsTypes.deleteTodo:
-      newState = [...currentTodos].filter((recipe) => recipe.id !== action.id);
+      newState = [...currentTodos].filter((todo) => todo.id !== action.id);
       break;
-    case actionsTypes.updateRecipe:
-      newState = [...currentTodos].map((recipe) =>
-        recipe.id === action.recipe.id ? { ...action.recipe } : { ...recipe }
+    case actionsTypes.updateTodo:
+      newState = [...currentTodos].map((todo) =>
+        todo.id === action.todo.id ? { ...action.todo } : { ...todo }
       );
       break;
     default:
