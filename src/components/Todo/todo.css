@@ -1,0 +1,13 @@
+.todo {
+  color: #ffcc00;
+  font-size: 1em;
+}
+.todo--notdone {
+  text-decoration: line-through;
+  text-decoration-color: grey;
+  text-decoration-style: double;
+}
+
+.todo > p {
+  margin: 0;
+}
