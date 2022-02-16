@@ -13,16 +13,6 @@
   color: white;
 }
 
-.todo {
-  color: #ffcc00;
-  font-size: 1em;
-}
-.todo--notdone {
-  text-decoration: line-through;
-  text-decoration-color: grey;
-  text-decoration-style: double;
-}
-
 button {
   font-family: "Montserrat", sans-serif;
   border-style: none;

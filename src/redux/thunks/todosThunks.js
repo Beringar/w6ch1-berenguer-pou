@@ -1,4 +1,9 @@
-import { loadTodosAction, deleteTodoAction } from "../actions/actionsCreators";
+import {
+  loadTodosAction,
+  deleteTodoAction,
+  toggleSolvedTodoAction,
+  addTodoAction,
+} from "../actions/actionsCreators";
 
 export const loadTodosThunk = async (dispatch) => {
   const response = await fetch(process.env.REACT_APP_HEROKKU_API_URL);
@@ -13,8 +18,34 @@ export const deleteTodoThunk = (id) => async (dispatch) => {
       method: "DELETE",
     }
   );
-
   if (response.ok) {
     dispatch(deleteTodoAction(id));
   }
+};
+
+export const toggleSolvedTodoThunk = (todo) => async (dispatch) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_HEROKKU_API_URL}${todo.id}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todo),
+    }
+  );
+  const newTask = await response.json();
+  dispatch(toggleSolvedTodoAction(newTask.id));
+};
+
+export const addTodoThunk = (todo) => async (dispatch) => {
+  const response = await fetch(process.env.REACT_APP_HEROKKU_API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(todo),
+  });
+  const newTodo = await response.json();
+  dispatch(addTodoAction(newTodo));
 };

@@ -2,7 +2,10 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "../Button/Button";
 import "./todo.css";
-import { deleteTodoThunk } from "../../redux/thunks/todosThunks";
+import {
+  deleteTodoThunk,
+  toggleSolvedTodoThunk,
+} from "../../redux/thunks/todosThunks";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -18,6 +21,7 @@ const Todo = ({ todo }) => {
   const dispatch = useDispatch();
 
   const deleteTodo = () => dispatch(deleteTodoThunk(todo.id));
+  const toggleSolved = () => dispatch(toggleSolvedTodoThunk(todo));
 
   return (
     <TodoWrapper className={`todo ${todo.notdone ? "todo--notdone" : ""}`}>
@@ -25,7 +29,7 @@ const Todo = ({ todo }) => {
       <Button
         text={todo.notdone ? "Set as not resolved" : "Mark as solved"}
         className={todo.notdone ? "button--notdone" : "button-done"}
-        actionOnClick={() => null}
+        actionOnClick={toggleSolved}
       />
       <FontAwesomeIcon icon={faTrashCan} onClick={deleteTodo} />
     </TodoWrapper>
