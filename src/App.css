@@ -37,3 +37,7 @@ button:disabled {
   gap: 0.5em;
   align-items: center;
 }
+
+.todo-list {
+  list-style-type: none;
+}

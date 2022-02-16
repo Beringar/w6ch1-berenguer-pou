@@ -11,10 +11,10 @@ import styled from "styled-components";
 
 const TodoWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
   gap: 12px;
-  padding: 8px 30px;
+  padding: 8px 20px;
 `;
 
 const Todo = ({ todo }) => {

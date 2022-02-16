@@ -39,6 +39,7 @@ export const toggleSolvedTodoThunk = (todo) => async (dispatch) => {
 };
 
 export const addTodoThunk = (todo) => async (dispatch) => {
+  console.log("action add");
   const response = await fetch(process.env.REACT_APP_HEROKKU_API_URL, {
     method: "POST",
     headers: {
