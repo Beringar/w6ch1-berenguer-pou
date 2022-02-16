@@ -1,0 +1,22 @@
+.todo {
+  color: #ffcc00;
+  font-size: 1em;
+}
+
+.todo button {
+  background-color: #004f00;
+  transition: all 0.4;
+}
+.todo--notdone button {
+  background-color: #6c0000;
+}
+
+.todo--notdone p {
+  text-decoration: line-through;
+  text-decoration-color: grey;
+  text-decoration-style: double;
+}
+
+.todo > p {
+  margin: 0;
+}

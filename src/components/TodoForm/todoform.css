@@ -1,0 +1,12 @@
+.form-control {
+  font-size: 1.2em;
+  font-weight: bold;
+  line-height: 1.2em;
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.form-control + .form-control {
+  margin-top: 0.8em;
+}

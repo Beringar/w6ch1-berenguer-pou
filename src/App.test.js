@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { screen } from "@testing-library/react";
+import App from "./App";
+import renderWithProviders from "./setupTests";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test("renders text Not Todos List", () => {
+  renderWithProviders(<App />);
+  const heading = screen.getByText(/not todos list/i);
+  expect(heading).toBeInTheDocument();
 });
