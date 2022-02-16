@@ -29,6 +29,7 @@ const TodoForm = () => {
 
   const resetForm = () => {
     setFormData(initialFormData);
+    document.querySelector("#text").value = "";
   };
 
   const isFilled = formData.text !== "";
@@ -41,20 +42,21 @@ const TodoForm = () => {
         autoComplete="off"
         noValidate
       >
-        <div className="form-block">
-          <label title="text" htmlFor="text">
-            {"Not todo task:"}
-          </label>
+        <div className="input-group">
+          <label for="text">{"Add a new (not) to do:"}</label>
           <input
             type="text"
             name="text"
             id="text"
             onChange={handleChange}
             placeholder="this has to be fixed..."
+            className="input-field"
           />
-        </div>
-        <div className="form-block">
-          <button type="submit" className="button" disabled={!isFilled}>
+          <button
+            type="submit"
+            className="button button-submit"
+            disabled={!isFilled}
+          >
             Add to my list of things to fix!
           </button>
         </div>
