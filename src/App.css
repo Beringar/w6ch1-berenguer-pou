@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+h1,
+h2 {
+  margin: 10px;
+}
+
 .main {
   background-color: #282c34;
   min-height: 100vh;

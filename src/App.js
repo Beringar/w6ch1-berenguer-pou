@@ -17,6 +17,7 @@ const App = () => {
     <div className="App">
       <main className="main">
         <h1>Not Todos List</h1>
+        <h2>things you don't want Mario to see</h2>
         <TodoForm />
         <TodosList todos={todos} />
       </main>
