@@ -1,7 +1,9 @@
+import Todo from "../Todo/Todo";
+
 const TodosList = ({ todos }) => (
   <ul>
     {todos.map((todo) => (
-      <p key={todo.id}>{`${todo.id} ${todo.text} ${todo.notdone}`}</p>
+      <Todo key={todo.id} todo={todo} />
     ))}
   </ul>
 );
