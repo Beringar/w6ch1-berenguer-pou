@@ -22,3 +22,28 @@
   text-decoration-color: grey;
   text-decoration-style: double;
 }
+
+button {
+  font-family: "Montserrat", sans-serif;
+  border-style: none;
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  background-color: #151f28;
+  color: #b3dfe2;
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 50%;
+}
+
+.form-control {
+  font-size: 1.2em;
+  font-weight: bold;
+  line-height: 1.2em;
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}
